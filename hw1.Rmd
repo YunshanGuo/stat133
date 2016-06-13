@@ -49,8 +49,7 @@ longest_dep_delay
 
 4. How long were the top 10 longest flights measured from departure to arrival? __longest_flights__
 ```{r}
-flight_time =  flights$hour *60 + flights$minute
-longest_flights = sort(flight_time,decreasing=TRUE)[1:10]
+longest_flights = head(flights[order(flights$air_time,decreasing=T),"air_time"],n=10)
 longest_flights
 ```
 
@@ -91,7 +90,7 @@ jfk_1000mi
 
 9. How many airlines fly from LGA to DFW? __num_lga_dfw__
 ```{r}
-num_lga_dfw = nrow(subset(flights,flights$origin=='LGA' & flights$dest=='DFW'))
+num_lga_dfw = length(unique(flights[flights$origin=='LGA' & flights$dest=='DFW',"carrier"]))
 num_lga_dfw
 ```
 

@@ -157,10 +157,9 @@ longest_dep_delay</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>How long were the top 10 longest flights measured from departure to arrival? <strong>longest_flights</strong></li>
 </ol>
-<pre class="r"><code>flight_time =  flights$hour *60 + flights$minute
-longest_flights = sort(flight_time,decreasing=TRUE)[1:10]
+<pre class="r"><code>longest_flights = head(flights[order(flights$air_time,decreasing=T),&quot;air_time&quot;],n=10)
 longest_flights</code></pre>
-<pre><code>##  [1] 1439 1439 1439 1439 1439 1439 1439 1439 1439 1439</code></pre>
+<pre><code>##  [1] 695 691 686 686 683 679 676 676 675 671</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>What is the average departure delay time for United Airlines (carrier UA)? <strong>ua_delay</strong></li>
 </ol>
@@ -199,9 +198,9 @@ jfk_1000mi</code></pre>
 <ol start="9" style="list-style-type: decimal">
 <li>How many airlines fly from LGA to DFW? <strong>num_lga_dfw</strong></li>
 </ol>
-<pre class="r"><code>num_lga_dfw = nrow(subset(flights,flights$origin=='LGA' &amp; flights$dest=='DFW'))
+<pre class="r"><code>num_lga_dfw = length(unique(flights[flights$origin=='LGA' &amp; flights$dest=='DFW',&quot;carrier&quot;]))
 num_lga_dfw</code></pre>
-<pre><code>## [1] 4858</code></pre>
+<pre><code>## [1] 3</code></pre>
 <ol start="10" style="list-style-type: decimal">
 <li>Which airline had the most flights coming out of JFK? <strong>most_flights_jfk</strong></li>
 </ol>
